@@ -1,23 +1,35 @@
+import React from "react";
+
+import {
+  BrowserRouter as Router,
+  Route,
+} from "react-router-dom";
+
+
 import './App.css';
+import Header from './componenets/Header';
+import NotesListPage from './pages/NotesListPage';
+import NotePage from './pages/NotePage';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
 
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  return (
+    <Router>
+      
+      <div className="container dark">
+
+          <div className="app">
+          <Header />
+          <Route path='/' exact component={NotesListPage} /> 
+          {/* 'exact' in Route renders NotesListPage on exact path='/'. If you do not use exact it will render it in followin note page as well.*/}
+
+          <Route path='/note/:id' component={NotePage} />
+          {/* id is a dynamic parameter. */}
+          </div>
+
+      </div>
+
+    </Router>
   );
 }
 
